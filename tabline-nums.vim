@@ -3,7 +3,7 @@ function! Tabline()
     let winwidth = winwidth(0)
     let tabscount = tabpagenr('$')
     let i = 0
-    for tablabel in TabLabels()
+    for tablabel in AbbrvTabLabels(TabLabels(), winwidth - 1)
         if i + 1 == tabpagenr()
             let tablinestr .= '%#TabLineSel#'
         else
@@ -25,6 +25,24 @@ function! TabLabels()
         call add(labels, TabLabel(i + 1))
     endfor
     return labels
+endfunction
+
+function! AbbrvTabLabels(tablabels, maxchars)
+    let labelschars = 0
+    for label in a:tablabels
+        let labelschars += strchars(label)
+    endfor
+    if labelschars > a:maxchars
+        let maxlabelchars = a:maxchars / len(a:tablabels)
+        let abbrvtablabels = []
+        for label in a:tablabels
+            let labelchars = strchars(label)
+            let abbrvlabel = label[:maxlabelchars - 2] . ' '
+            call add(abbrvtablabels, abbrvlabel)
+        endfor
+        return abbrvtablabels
+    endif
+    return a:tablabels
 endfunction
 
 function! TabLabel(tabnr)
