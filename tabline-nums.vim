@@ -30,14 +30,18 @@ endfunction
 function! TabLabel(tabnr)
     let label = ' '
     let label .= a:tabnr . ' '
+    let wincountandbufmod = ''
     let wincount = tabpagewinnr(a:tabnr, '$')
     if wincount > 1
-        let label .= wincount
+        let wincountandbufmod .= wincount
     endif
     if ContainsBufMod(a:tabnr)
-        let label .= '+'
+        let wincountandbufmod .= '+'
     endif
-    let label .= ' ' . FileName(a:tabnr)
+    if wincountandbufmod != ''
+        let label .= wincountandbufmod . ' '
+    endif
+    let label .= FileName(a:tabnr)
     let label .= ' '
     return label
 endfunction
