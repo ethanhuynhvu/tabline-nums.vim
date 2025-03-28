@@ -14,7 +14,7 @@ function! Tabline()
     endfor
     let tablinestr .= '%#TabLineFill#%T'
     if tabscount > 1
-        let tablinestr .= '%=%#TabLine#%999XX'
+        let tablinestr .= '%=%#TabLine#%' . winwidth . 'XX'
     endif
     return tablinestr
 endfunction
