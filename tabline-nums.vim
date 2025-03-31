@@ -1,6 +1,6 @@
 function! Tabline()
     let tablinestr = ''
-    let winwidth = winwidth(0)
+    let winwidth = &columns
     let tabscount = tabpagenr('$')
     let i = 0
     for tablabel in AbbrvTabLabels(TabLabels(), winwidth - 1)
