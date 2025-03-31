@@ -1,8 +1,8 @@
 # tabline-nums.vim
 
-* Adds tab numbers to tabs
-* Fit tabs into window width
+* Add tab numbers to tabline
+* Responsive tab sizes
 
 ### TODO:
 
-* Improve tab length turncation to fit in window
+* Improve tab size responsiveness
